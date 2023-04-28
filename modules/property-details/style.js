@@ -21,9 +21,18 @@ export const AccountHeadline = styled.h2`
 `;
 
 export const InfoText = styled.div`
+  display: flex;
+  gap: 0.25rem;
   line-height: 1.6;
   font-size: ${(props) => props.theme.typography.m.fontSize};
   color: ${(props) => props.theme.colors.neutral[600]};
+`;
+
+export const InfoValuationChange = styled.div`
+  background: #c2f7e1;
+  padding: 0.25rem 1.75rem;
+  border-radius: 1rem;
+  font-size: 1rem;
 `;
 
 export const AccountSection = styled.div`
@@ -37,7 +46,7 @@ export const AccountSection = styled.div`
 
 export const AccountListItem = styled.div`
   display: flex;
-
+  justify-content: space-between;
   &:not(:last-of-type) {
     margin-bottom: ${(props) => props.theme.space.m};
   }
