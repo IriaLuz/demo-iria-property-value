@@ -90,28 +90,26 @@ const Detail = ({}) => {
       </AccountSection>
       <AccountSection>
         <AccountLabel>Valuation Change</AccountLabel>
-        <RowContainer>
-          <AccountList>
-            <AccountListItem>
-              <InfoText>
-                {" "}
-                Purchased for
-                <PriceFormatter
-                  price={account.originalPurchasePrice}
-                ></PriceFormatter>
-                {`in ${account.originalPurchasePriceDate}`}
-              </InfoText>
-            </AccountListItem>
-            <AccountListItem>
-              <InfoText>Since Purchased</InfoText>
-              <InfoValuationChange>£202.883(220.5%)</InfoValuationChange>
-            </AccountListItem>
-            <AccountListItem>
-              <InfoText>Annual appreciation</InfoText>
-              <InfoValuationChange>13.4%</InfoValuationChange>
-            </AccountListItem>
-          </AccountList>
-        </RowContainer>
+        <AccountList>
+          <AccountListItem>
+            <InfoText>
+              {" "}
+              Purchased for
+              <PriceFormatter
+                price={account.originalPurchasePrice}
+              ></PriceFormatter>
+              {`in ${account.originalPurchasePriceDate}`}
+            </InfoText>
+          </AccountListItem>
+          <AccountListItem>
+            <InfoText>Since Purchased</InfoText>
+            <InfoValuationChange>£202.883(220.5%)</InfoValuationChange>
+          </AccountListItem>
+          <AccountListItem>
+            <InfoText>Annual appreciation</InfoText>
+            <InfoValuationChange>13.4%</InfoValuationChange>
+          </AccountListItem>
+        </AccountList>
       </AccountSection>
 
       {mortgage && (
