@@ -13,6 +13,13 @@ import {
   Inset,
   InfoValuationChange,
 } from "./style";
+import {
+  PriceFormatter,
+  formatMonthYear,
+  getYearsSincePurchase,
+  getSincePurchase,
+  getSincePurchasePercentage,
+} from "../helpers";
 
 const account = {
   uid: "65156cdc-5cfd-4b34-b626-49c83569f35e",
@@ -38,39 +45,6 @@ const account = {
   lastUpdate: "2020-12-01T08:55:33.421Z",
   updateAfterDays: 30,
 };
-
-const PriceFormatter = (price) => {
-  const formatter = new Intl.NumberFormat("en-GB", {
-    style: "currency",
-    currency: "GBP",
-  });
-
-  const formattedPrice = formatter.format(Math.abs(price));
-
-  return (
-    <div>
-      <p>{formattedPrice}</p>
-    </div>
-  );
-};
-
-const formatMonthYear = (dateString) => {
-  const date = new Date(dateString);
-  const month = date.toLocaleString("en-GB", { month: "short" });
-  const year = date.getFullYear();
-  return `${month} ${year}`;
-};
-
-const getYearsSincePurchase = (originalPurchasePriceDate) =>
-  new Date().getFullYear() - new Date(originalPurchasePriceDate).getFullYear();
-
-const getSincePurchase = (recentValuation, originalPurchasePrice) =>
-  recentValuation.amount - originalPurchasePrice;
-
-const getSincePurchasePercentage = (recentValuation, originalPurchasePrice) =>
-  (getSincePurchase(recentValuation, originalPurchasePrice) /
-    originalPurchasePrice) *
-  100;
 
 const {
   recentValuation,
