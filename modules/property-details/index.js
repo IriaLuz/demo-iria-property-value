@@ -13,7 +13,6 @@ import {
   Inset,
   InfoValuationChange,
 } from "./style";
-import PriceFormatter from "../../modules/helpers";
 
 const account = {
   uid: "65156cdc-5cfd-4b34-b626-49c83569f35e",
@@ -40,6 +39,72 @@ const account = {
   updateAfterDays: 30,
 };
 
+const PriceFormatter = (price) => {
+  const formatter = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  });
+
+  const formattedPrice = formatter.format(Math.abs(price));
+
+  return (
+    <div>
+      <p>{formattedPrice}</p>
+    </div>
+  );
+};
+
+const formatMonthYear = (dateString) => {
+  const date = new Date(dateString);
+  const month = date.toLocaleString("en-GB", { month: "short" });
+  const year = date.getFullYear();
+  return `${month} ${year}`;
+};
+
+const getYearsSincePursache = (originalPurchasePriceDate) =>
+  new Date().getFullYear() - new Date(originalPurchasePriceDate).getFullYear();
+
+const getSincePurchase = (recentValuation, originalPurchasePrice) =>
+  recentValuation.amount - originalPurchasePrice;
+
+const getSincePurchasePercentage = (recentValuation, originalPurchasePrice) =>
+  (getSincePurchase(recentValuation, originalPurchasePrice) /
+    originalPurchasePrice) *
+  100;
+
+const {
+  recentValuation,
+  originalPurchasePrice,
+  originalPurchasePriceDate,
+  recentValuation: { amount },
+  associatedMortgages: [{ currentBalance }],
+} = account;
+
+const yearsSincePurchase = getYearsSincePursache(originalPurchasePriceDate);
+
+const sincePurchasePercentage = getSincePurchasePercentage(
+  recentValuation,
+  originalPurchasePrice
+);
+
+const annualApreciatioPercentage = `${
+  sincePurchasePercentage / yearsSincePurchase
+}%`;
+
+const purshacedDate = formatMonthYear(originalPurchasePriceDate);
+
+const sincePurchaseValue = new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+  maximumSignificantDigits: 3,
+}).format(Math.abs(getSincePurchase(recentValuation, originalPurchasePrice)));
+
+const sincePurchaseInfo = `${sincePurchaseValue} (${sincePurchasePercentage}%)`;
+
+const originalPurchaseCost = PriceFormatter(originalPurchasePrice);
+const recentValuationCost = PriceFormatter(amount);
+const currentBalanceInMortage = PriceFormatter(currentBalance);
+
 const Detail = ({}) => {
   let mortgage;
   const lastUpdate = new Date(account.lastUpdate);
@@ -51,11 +116,7 @@ const Detail = ({}) => {
     <Inset>
       <AccountSection>
         <AccountLabel>Estimated Value</AccountLabel>
-        <AccountHeadline>
-          <PriceFormatter
-            price={account.recentValuation.amount}
-          ></PriceFormatter>
-        </AccountHeadline>
+        <AccountHeadline>{recentValuationCost}</AccountHeadline>
         <AccountList>
           <AccountListItem>
             <InfoText>
@@ -95,19 +156,19 @@ const Detail = ({}) => {
             <InfoText>
               {" "}
               Purchased for
-              <PriceFormatter
-                price={account.originalPurchasePrice}
-              ></PriceFormatter>
-              {`in ${account.originalPurchasePriceDate}`}
+              {originalPurchaseCost}
+              {`in ${purshacedDate}`}
             </InfoText>
           </AccountListItem>
           <AccountListItem>
             <InfoText>Since Purchased</InfoText>
-            <InfoValuationChange>£202.883(220.5%)</InfoValuationChange>
+            <InfoValuationChange>{sincePurchaseInfo}</InfoValuationChange>
           </AccountListItem>
           <AccountListItem>
             <InfoText>Annual appreciation</InfoText>
-            <InfoValuationChange>13.4%</InfoValuationChange>
+            <InfoValuationChange>
+              {annualApreciatioPercentage}
+            </InfoValuationChange>
           </AccountListItem>
         </AccountList>
       </AccountSection>
@@ -121,13 +182,7 @@ const Detail = ({}) => {
           >
             <AccountList>
               <AccountListItem>
-                <InfoText>
-                  <PriceFormatter
-                    price={Math.abs(
-                      account.associatedMortgages[0].currentBalance
-                    )}
-                  ></PriceFormatter>
-                </InfoText>
+                <InfoText>{currentBalanceInMortage}</InfoText>
               </AccountListItem>
               <AccountListItem>
                 <InfoText>{account.associatedMortgages[0].name}</InfoText>
