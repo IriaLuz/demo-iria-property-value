@@ -61,7 +61,7 @@ const formatMonthYear = (dateString) => {
   return `${month} ${year}`;
 };
 
-const getYearsSincePursache = (originalPurchasePriceDate) =>
+const getYearsSincePurchase = (originalPurchasePriceDate) =>
   new Date().getFullYear() - new Date(originalPurchasePriceDate).getFullYear();
 
 const getSincePurchase = (recentValuation, originalPurchasePrice) =>
@@ -80,7 +80,7 @@ const {
   associatedMortgages: [{ currentBalance }],
 } = account;
 
-const yearsSincePurchase = getYearsSincePursache(originalPurchasePriceDate);
+const yearsSincePurchase = getYearsSincePurchase(originalPurchasePriceDate);
 
 const sincePurchasePercentage = getSincePurchasePercentage(
   recentValuation,
@@ -105,12 +105,11 @@ const originalPurchaseCost = PriceFormatter(originalPurchasePrice);
 const recentValuationCost = PriceFormatter(amount);
 const currentBalanceInMortage = PriceFormatter(currentBalance);
 
-const Detail = ({}) => {
-  let mortgage;
+const Detail = () => {
+  const mortgage = account.associatedMortgages.length
+    ? account.associatedMortgages[0]
+    : null;
   const lastUpdate = new Date(account.lastUpdate);
-  if (account.associatedMortgages.length) {
-    mortgage = account.associatedMortgages[0];
-  }
 
   return (
     <Inset>
