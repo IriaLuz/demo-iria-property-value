@@ -1,6 +1,5 @@
 /* eslint-disable max-statements */
 import { add, format } from "date-fns";
-import React from "react";
 import { Button } from "../../components/button";
 import RowContainer from "../../components/row-container";
 import {
@@ -46,44 +45,43 @@ const account = {
   updateAfterDays: 30,
 };
 
-const {
-  recentValuation,
-  originalPurchasePrice,
-  originalPurchasePriceDate,
-  recentValuation: { amount },
-  associatedMortgages: [{ currentBalance }],
-} = account;
+const Detail = ({ account }) => {
+  const {
+    recentValuation,
+    originalPurchasePrice,
+    originalPurchasePriceDate,
+    recentValuation: { amount },
+    associatedMortgages: [{ currentBalance }],
+  } = account;
 
-const yearsSincePurchase = getYearsSincePurchase(originalPurchasePriceDate);
-
-const sincePurchasePercentage = getSincePurchasePercentage(
-  recentValuation,
-  originalPurchasePrice
-);
-
-const annualApreciatioPercentage = `${
-  sincePurchasePercentage / yearsSincePurchase
-}%`;
-
-const purshacedDate = formatMonthYear(originalPurchasePriceDate);
-
-const sincePurchaseValue = new Intl.NumberFormat("en-GB", {
-  style: "currency",
-  currency: "GBP",
-  maximumSignificantDigits: 3,
-}).format(Math.abs(getSincePurchase(recentValuation, originalPurchasePrice)));
-
-const sincePurchaseInfo = `${sincePurchaseValue} (${sincePurchasePercentage}%)`;
-
-const originalPurchaseCost = PriceFormatter(originalPurchasePrice);
-const recentValuationCost = PriceFormatter(amount);
-const currentBalanceInMortage = PriceFormatter(currentBalance);
-
-const Detail = () => {
   const mortgage = account.associatedMortgages.length
     ? account.associatedMortgages[0]
     : null;
   const lastUpdate = new Date(account.lastUpdate);
+  const yearsSincePurchase = getYearsSincePurchase(originalPurchasePriceDate);
+
+  const sincePurchasePercentage = getSincePurchasePercentage(
+    recentValuation,
+    originalPurchasePrice
+  );
+
+  const annualApreciatioPercentage = `${
+    sincePurchasePercentage / yearsSincePurchase
+  }%`;
+
+  const purshacedDate = formatMonthYear(originalPurchasePriceDate);
+
+  const sincePurchaseValue = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    maximumSignificantDigits: 3,
+  }).format(Math.abs(getSincePurchase(recentValuation, originalPurchasePrice)));
+
+  const sincePurchaseInfo = `${sincePurchaseValue} (${sincePurchasePercentage}%)`;
+
+  const originalPurchaseCost = PriceFormatter(originalPurchasePrice);
+  const recentValuationCost = PriceFormatter(amount);
+  const currentBalanceInMortage = PriceFormatter(currentBalance);
 
   return (
     <Inset>

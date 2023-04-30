@@ -1,13 +1,13 @@
-import styled, {ThemeProvider} from "styled-components"
+import styled, { ThemeProvider } from "styled-components";
+import { theme } from "../theme";
 
-import {theme} from "../theme"
-import "../styles/reset.css"
-import "../styles/globals.css"
+import "../styles/reset.css";
+import "../styles/globals.css";
 
 const Body = styled.div`
   background-color: ${(props) => props.theme.colors.white.default};
   height: 100vh;
-`
+`;
 const NavBar = styled.div`
   background-color: ${(props) => props.theme.colors.white.default};
   height: 58px;
@@ -17,12 +17,12 @@ const NavBar = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-`
+`;
 const Sidebar = styled.div`
   background-color: ${(props) => props.theme.colors.neutral[900]};
   width: 25%;
   display: none;
-`
+`;
 const Page = styled.div`
   box-shadow: 0 -4px 4px ${(props) => props.theme.colors.neutral[200]};
   position: relative;
@@ -32,7 +32,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width:  ${(props) => props.theme.breakpoints.l}px) {
+  @media (min-width: ${(props) => props.theme.breakpoints.l}px) {
     flex-direction: row;
 
     ${Sidebar} {
@@ -43,28 +43,28 @@ const Page = styled.div`
       display: none;
     }
   }
-`
+`;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   padding-bottom: 100px;
-`
+`;
 
-function App({Component, pageProps}) {
+function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <Body>
-      <Page>
-        <Sidebar />
-        <Content>
-        <Component {...pageProps} />
-        </Content>
-        <NavBar />
-      </Page>
-    </Body>
+        <Page>
+          <Sidebar />
+          <Content>
+            <Component {...pageProps} />
+          </Content>
+          <NavBar />
+        </Page>
+      </Body>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
