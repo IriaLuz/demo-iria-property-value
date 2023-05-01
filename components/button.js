@@ -7,7 +7,7 @@ export const Button = styled.button`
   color: #fff;
   border-radius: ${(props) => props.theme.space.xs};
   font-size: ${(props) => props.theme.typography.xl.fontSize};
-  padding:  ${(props) => props.theme.space.s};
+  padding: ${(props) => props.theme.space.s};
   width: 100%;
   border: none;
 `;

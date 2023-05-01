@@ -22,17 +22,19 @@ export const AccountHeadline = styled.h2`
 
 export const InfoText = styled.div`
   display: flex;
-  gap: 0.25rem;
+  gap: ${(props) => props.theme.space.xs};
   line-height: 1.6;
   font-size: ${(props) => props.theme.typography.m.fontSize};
   color: ${(props) => props.theme.colors.neutral[600]};
 `;
 
 export const InfoValuationChange = styled.div`
-  background: #c2f7e1;
-  padding: 0.25rem 1.75rem;
+  background: ${(props) => props.theme.colors.valuationBackground};
+  padding: ${(props) => props.theme.space.xs} ${(props) => props.theme.space.l};
   border-radius: 1rem;
-  font-size: 1rem;
+  font-size: ${(props) => props.theme.typography.xs.fontSize};
+  color: ${(props) => props.theme.colors.valuationText};
+  font-weight: 600;
 `;
 
 export const AccountSection = styled.div`

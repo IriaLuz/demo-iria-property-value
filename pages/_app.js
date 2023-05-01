@@ -1,6 +1,5 @@
 import styled, { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
-
 import "../styles/reset.css";
 import "../styles/globals.css";
 
@@ -44,6 +43,7 @@ const Page = styled.div`
     }
   }
 `;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;

@@ -2,6 +2,7 @@
 import { add, format } from "date-fns";
 import { Button } from "../../components/button";
 import RowContainer from "../../components/row-container";
+import styled from "styled-components";
 import {
   AccountHeadline,
   AccountLabel,
@@ -13,37 +14,16 @@ import {
   InfoValuationChange,
 } from "./style";
 import {
-  PriceFormatter,
+  priceFormatter,
   formatMonthYear,
   getYearsSincePurchase,
   getSincePurchase,
   getSincePurchasePercentage,
 } from "../helpers";
 
-const account = {
-  uid: "65156cdc-5cfd-4b34-b626-49c83569f35e",
-  deleted: false,
-  dateCreated: "2020-12-03T08:55:33.421Z",
-  currency: "GBP",
-  name: "15 Temple Way",
-  bankName: "Residential",
-  type: "properties",
-  subType: "residential",
-  originalPurchasePrice: 250000,
-  originalPurchasePriceDate: "2017-09-03",
-  recentValuation: { amount: 310000, status: "good" },
-  associatedMortgages: [
-    {
-      name: "HSBC Repayment Mortgage",
-      uid: "fb463121-b51a-490d-9f19-d2ea76f05e25",
-      currentBalance: -175000,
-    },
-  ],
-  canBeManaged: false,
-  postcode: "BS1 2AA",
-  lastUpdate: "2020-12-01T08:55:33.421Z",
-  updateAfterDays: 30,
-};
+const StyledOriginalPursachePrice = styled.span`
+  font-weight: 600;
+`;
 
 const Detail = ({ account }) => {
   const {
@@ -58,6 +38,7 @@ const Detail = ({ account }) => {
     ? account.associatedMortgages[0]
     : null;
   const lastUpdate = new Date(account.lastUpdate);
+
   const yearsSincePurchase = getYearsSincePurchase(originalPurchasePriceDate);
 
   const sincePurchasePercentage = getSincePurchasePercentage(
@@ -79,9 +60,9 @@ const Detail = ({ account }) => {
 
   const sincePurchaseInfo = `${sincePurchaseValue} (${sincePurchasePercentage}%)`;
 
-  const originalPurchaseCost = PriceFormatter(originalPurchasePrice);
-  const recentValuationCost = PriceFormatter(amount);
-  const currentBalanceInMortage = PriceFormatter(currentBalance);
+  const originalPurchaseCost = priceFormatter(originalPurchasePrice);
+  const recentValuationCost = priceFormatter(amount);
+  const currentBalanceInMortage = priceFormatter(currentBalance);
 
   return (
     <Inset>
@@ -125,9 +106,10 @@ const Detail = ({ account }) => {
         <AccountList>
           <AccountListItem>
             <InfoText>
-              {" "}
               Purchased for
-              {originalPurchaseCost}
+              <StyledOriginalPursachePrice>
+                {originalPurchaseCost}
+              </StyledOriginalPursachePrice>
               {`in ${purshacedDate}`}
             </InfoText>
           </AccountListItem>
