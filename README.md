@@ -38,11 +38,11 @@ The test command is used to run the Jest test runner on your project. This comma
 
 We also ask that you update the readme with answers to the following questions
 
-Given more time, what other changes you would have liked to make?
+## Future improvements 
 
 - I would like to set linters and pre-commit hooks
 - Add some ARIA attributes to provide additional information to assistive technologies.
 
-What UX or design improvements or alterations might you suggest? These can be to existing components or completely new ideas.
+UX or design improvements 
 
 - I would suggest to use more color contrast I have check the app with lighhouse and the accessibility is 87% that could be improved by using a better color contrast for the text and the buttons. Background and foreground colors do not have a sufficient contrast ratio.
