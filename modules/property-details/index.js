@@ -20,6 +20,7 @@ import {
   getSincePurchase,
   getSincePurchasePercentage,
 } from "../../helpers/helpers";
+import PropTypes from "prop-types";
 
 const StyledOriginalPursachePrice = styled.span`
   font-weight: 600;
@@ -62,7 +63,6 @@ const Detail = ({ account }) => {
 
   const originalPurchaseCost = priceFormatter(originalPurchasePrice);
   const recentValuationCost = priceFormatter(amount);
-  console.log(recentValuationCost);
   const currentBalanceInMortage = priceFormatter(currentBalance);
 
   return (
@@ -158,3 +158,24 @@ const Detail = ({ account }) => {
 };
 
 export default Detail;
+
+Detail.propTypes = {
+  account: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    bankName: PropTypes.string.isRequired,
+    postcode: PropTypes.string.isRequired,
+    recentValuation: PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+    }).isRequired,
+    originalPurchasePrice: PropTypes.number.isRequired,
+    originalPurchasePriceDate: PropTypes.string.isRequired,
+    associatedMortgages: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        currentBalance: PropTypes.number.isRequired,
+      })
+    ),
+    lastUpdate: PropTypes.string.isRequired,
+    updateAfterDays: PropTypes.number.isRequired,
+  }),
+};
