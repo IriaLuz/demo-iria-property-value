@@ -3,6 +3,13 @@ import { queryByText, render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import Detail from "../../../modules/property-details";
 import { theme } from "../../../theme/index";
+import {
+  formatMonthYear,
+  priceFormatter,
+  getYearsSincePurchase,
+  getSincePurchase,
+  getSincePurchasePercentage,
+} from "../../../helpers/helpers";
 
 export function renderWithTheme(children, customTheme) {
   return render(<ThemeProvider theme={customTheme}>{children}</ThemeProvider>);
@@ -41,15 +48,69 @@ describe("property-details component", () => {
     renderWithTheme(<Detail account={mockData} />, theme);
   });
 
-  test("displays the correct estimated value of annual-apreciation", () => {
+  it("display the price in the correct format", () => {
     render(
       <ThemeProvider theme={theme}>
         <Detail account={mockData} />
       </ThemeProvider>
     );
 
-    const estimatedValue = screen.queryByTestId("annual-apreciation");
+    const formatPrice = priceFormatter(mockData.recentValuation.amount);
+    expect(formatPrice).toBe("£310,000.00");
+  });
 
-    expect(estimatedValue).toHaveTextContent("4%");
+  it("display the date in the correct format", () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Detail account={mockData} />
+      </ThemeProvider>
+    );
+
+    const formatPrice = formatMonthYear(mockData.lastUpdate);
+    expect(formatPrice).toBe("Dec 2020");
+  });
+
+  it("use a function to calculate the number of years since purchese", () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Detail account={mockData} />
+      </ThemeProvider>
+    );
+
+    const formatPrice = getYearsSincePurchase(
+      mockData.originalPurchasePriceDate
+    );
+    expect(formatPrice).toBe(6);
+  });
+
+  it("use a function to calculate the number of years since purchese", () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Detail account={mockData} />
+      </ThemeProvider>
+    );
+
+    const yearsSincePurchase = getYearsSincePurchase(
+      mockData.originalPurchasePriceDate
+    );
+    expect(yearsSincePurchase).toBe(6);
+  });
+
+  it("display the valuation change in price and percentage", () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Detail account={mockData} />
+      </ThemeProvider>
+    );
+
+    const sincePurchaseValue = getSincePurchase(
+      mockData.recentValuation,
+      mockData.originalPurchasePrice
+    );
+    const sincePurchasePercentage = getSincePurchasePercentage(
+      mockData.recentValuation,
+      mockData.originalPurchasePrice
+    );
+    expect(sincePurchasePercentage).toBe(24);
   });
 });

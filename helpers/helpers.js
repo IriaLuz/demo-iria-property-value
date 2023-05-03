@@ -6,11 +6,7 @@ export const priceFormatter = (price) => {
 
   const formattedPrice = formatter.format(Math.abs(price));
 
-  return (
-    <div>
-      <p>{formattedPrice}</p>
-    </div>
-  );
+  return formattedPrice;
 };
 
 export const formatMonthYear = (dateString) => {
