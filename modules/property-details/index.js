@@ -19,7 +19,7 @@ import {
   getYearsSincePurchase,
   getSincePurchase,
   getSincePurchasePercentage,
-} from "../helpers";
+} from "../../helpers/helpers";
 
 const StyledOriginalPursachePrice = styled.span`
   font-weight: 600;
@@ -62,6 +62,7 @@ const Detail = ({ account }) => {
 
   const originalPurchaseCost = priceFormatter(originalPurchasePrice);
   const recentValuationCost = priceFormatter(amount);
+  console.log(recentValuationCost);
   const currentBalanceInMortage = priceFormatter(currentBalance);
 
   return (
@@ -102,7 +103,9 @@ const Detail = ({ account }) => {
         </RowContainer>
       </AccountSection>
       <AccountSection>
-        <AccountLabel>Valuation Change</AccountLabel>
+        <AccountLabel data-tesid="valuation-title">
+          Valuation Change
+        </AccountLabel>
         <AccountList>
           <AccountListItem>
             <InfoText>
@@ -119,7 +122,7 @@ const Detail = ({ account }) => {
           </AccountListItem>
           <AccountListItem>
             <InfoText>Annual appreciation</InfoText>
-            <InfoValuationChange>
+            <InfoValuationChange data-testid="annual-apreciation">
               {annualApreciatioPercentage}
             </InfoValuationChange>
           </AccountListItem>
