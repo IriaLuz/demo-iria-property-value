@@ -2,7 +2,6 @@
 import { add, format } from "date-fns";
 import { Button } from "../../components/button";
 import RowContainer from "../../components/row-container";
-import styled from "styled-components";
 import {
   AccountHeadline,
   AccountLabel,
@@ -12,6 +11,7 @@ import {
   InfoText,
   Inset,
   InfoValuationChange,
+  StyledOriginalPursachePrice,
 } from "./style";
 import {
   priceFormatter,
@@ -21,10 +21,6 @@ import {
   getSincePurchasePercentage,
 } from "../../helpers/helpers";
 import PropTypes from "prop-types";
-
-const StyledOriginalPursachePrice = styled.span`
-  font-weight: 600;
-`;
 
 const Detail = ({ account }) => {
   const {

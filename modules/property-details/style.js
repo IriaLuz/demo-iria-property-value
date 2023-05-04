@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const StyledOriginalPursachePrice = styled.span`
+  font-weight: 600;
+`;
+
 export const AccountList = styled.ul`
   list-style: none;
   padding-left: 0;
