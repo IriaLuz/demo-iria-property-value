@@ -5,23 +5,30 @@ import { loadAccount } from "../lib/load-account";
 import { Loader } from "../components/loader";
 
 export default function PropertyDetails() {
-  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [account, setAccount] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const accountDetails = await loadAccount();
-      setData(accountDetails);
-    };
+    async function fetchData() {
+      try {
+        const accountDetails = await loadAccount();
+        setAccount(accountDetails.account);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
     fetchData();
   }, []);
 
   return (
     <>
       <Banner>Property Details</Banner>
-      {data ? (
-        <Detail account={data.account} />
-      ) : (
+      {isLoading ? (
         <Loader text="LOADING"></Loader>
+      ) : (
+        <Detail account={account} />
       )}
     </>
   );
