@@ -35,7 +35,12 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>{/* your head content */}</Head>
+        <Head>
+          <meta
+            name="Property Account"
+            content="This document outlines the details for a new feature of an Account property. Customers will now receive automatic value updates on their properties"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
