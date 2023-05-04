@@ -12,7 +12,7 @@ export const theme = {
     body: `"sans-serif"`,
   },
   colors: {
-    primary: generateShades("#01a5b8"),
+    primary: generateShades("#00819d"),
     neutral: {
       default: "#9e9e9e",
       100: "#f7f7f7",
@@ -26,7 +26,7 @@ export const theme = {
       900: "#3b3b3b",
       1000: "#222222",
     },
-    valuationText: "#006b57",
+    valuationText: "#004c3e",
     valuationBackground: "#c2f7e1",
     white: {
       default: "#fff",
