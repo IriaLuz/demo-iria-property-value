@@ -29,16 +29,16 @@ export const InfoText = styled.div`
   gap: ${(props) => props.theme.space.xs};
   line-height: 1.6;
   font-size: ${(props) => props.theme.typography.m.fontSize};
-  color: ${(props) => props.theme.colors.neutral[600]};
+  color: ${(props) => props.theme.colors.neutral[1000]};
 `;
 
 export const InfoValuationChange = styled.div`
   background: ${(props) => props.theme.colors.valuationBackground};
   padding: ${(props) => props.theme.space.xs} ${(props) => props.theme.space.l};
   border-radius: 1rem;
-  font-size: ${(props) => props.theme.typography.xs.fontSize};
+  font-size: ${(props) => props.theme.typography.s.fontSize};
   color: ${(props) => props.theme.colors.valuationText};
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 export const AccountSection = styled.div`
@@ -50,7 +50,7 @@ export const AccountSection = styled.div`
 }
 `;
 
-export const AccountListItem = styled.div`
+export const AccountListItem = styled.li`
   display: flex;
   justify-content: space-between;
   &:not(:last-of-type) {

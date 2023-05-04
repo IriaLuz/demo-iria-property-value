@@ -21,6 +21,7 @@ import {
   getSincePurchasePercentage,
 } from "../../helpers/helpers";
 import PropTypes from "prop-types";
+import Head from "next/head";
 
 const Detail = ({ account }) => {
   const {
@@ -63,6 +64,9 @@ const Detail = ({ account }) => {
 
   return (
     <Inset>
+      <Head>
+        <title>Property Account</title>
+      </Head>
       <AccountSection>
         <AccountLabel>Estimated Value</AccountLabel>
         <AccountHeadline>{recentValuationCost}</AccountHeadline>
@@ -84,7 +88,7 @@ const Detail = ({ account }) => {
       </AccountSection>
       <AccountSection>
         <AccountLabel>Property details</AccountLabel>
-        <RowContainer>
+        <RowContainer tabIndex="0">
           <AccountList>
             <AccountListItem>
               <InfoText>{account.name}</InfoText>
@@ -129,6 +133,7 @@ const Detail = ({ account }) => {
         <AccountSection>
           <AccountLabel>Mortgage</AccountLabel>
           <RowContainer
+            tabIndex="1"
             // This is a dummy action
             onClick={() => alert("You have navigated to the mortgage page")}
           >
@@ -144,6 +149,7 @@ const Detail = ({ account }) => {
         </AccountSection>
       )}
       <Button
+        role="button"
         // This is a dummy action
         onClick={() => alert("You have navigated to the edit account page")}
       >
