@@ -44,52 +44,31 @@ const mockData = {
 };
 
 describe("property-details component", () => {
-  it("should render properly", () => {
-    renderWithTheme(<Detail account={mockData} />, theme);
-  });
-
-  it("display the price in the correct format", () => {
+  beforeEach(() => {
     render(
       <ThemeProvider theme={theme}>
         <Detail account={mockData} />
       </ThemeProvider>
     );
+  });
 
+  it("should render properly", () => {
+    expect(screen.getByTestId("valuation-title")).toHaveTextContent(
+      "Valuation Change"
+    );
+  });
+
+  it("display the price in the correct format", () => {
     const formatPrice = priceFormatter(mockData.recentValuation.amount);
     expect(formatPrice).toBe("£310,000.00");
   });
 
   it("display the date in the correct format", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Detail account={mockData} />
-      </ThemeProvider>
-    );
-
-    const formatPrice = formatMonthYear(mockData.lastUpdate);
-    expect(formatPrice).toBe("Dec 2020");
+    const monthYearFormatted = formatMonthYear(mockData.lastUpdate);
+    expect(monthYearFormatted).toBe("Dec 2020");
   });
 
   it("use a function to calculate the number of years since purchese", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Detail account={mockData} />
-      </ThemeProvider>
-    );
-
-    const formatPrice = getYearsSincePurchase(
-      mockData.originalPurchasePriceDate
-    );
-    expect(formatPrice).toBe(6);
-  });
-
-  it("use a function to calculate the number of years since purchese", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Detail account={mockData} />
-      </ThemeProvider>
-    );
-
     const yearsSincePurchase = getYearsSincePurchase(
       mockData.originalPurchasePriceDate
     );
@@ -97,16 +76,6 @@ describe("property-details component", () => {
   });
 
   it("display the valuation change in price and percentage", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Detail account={mockData} />
-      </ThemeProvider>
-    );
-
-    const sincePurchaseValue = getSincePurchase(
-      mockData.recentValuation,
-      mockData.originalPurchasePrice
-    );
     const sincePurchasePercentage = getSincePurchasePercentage(
       mockData.recentValuation,
       mockData.originalPurchasePrice

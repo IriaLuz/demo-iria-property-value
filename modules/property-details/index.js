@@ -103,7 +103,7 @@ const Detail = ({ account }) => {
         </RowContainer>
       </AccountSection>
       <AccountSection>
-        <AccountLabel data-tesid="valuation-title">
+        <AccountLabel data-testid="valuation-title">
           Valuation Change
         </AccountLabel>
         <AccountList>
