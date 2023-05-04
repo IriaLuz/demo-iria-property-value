@@ -5,7 +5,7 @@ import "../styles/globals.css";
 
 const Body = styled.div`
   background-color: ${(props) => props.theme.colors.white.default};
-  height: 100vh;
+  height: 108vh;
 `;
 const NavBar = styled.div`
   background-color: ${(props) => props.theme.colors.white.default};
@@ -35,7 +35,7 @@ const Page = styled.div`
     flex-direction: row;
 
     ${Sidebar} {
-      display: block;
+      display: flex;
     }
 
     ${NavBar} {
