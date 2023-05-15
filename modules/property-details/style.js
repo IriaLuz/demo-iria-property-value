@@ -9,7 +9,7 @@ export const AccountList = styled.ul`
   padding-left: 0;
 `;
 
-export const AccountLabel = styled.label`
+export const AccountLabel = styled.h2`
   font-size: ${(props) => props.theme.typography.xl.fontSize};
   line-height: ${(props) => props.theme.typography.xl.lineHeight};
   color: ${(props) => props.theme.colors.neutral[900]};
