@@ -68,17 +68,15 @@ const Detail = ({ account }) => {
         <title>Property Account</title>
       </Head>
       <AccountSection>
-        <AccountLabel role="heading" aria-level="2">
-          Estimated Value
-        </AccountLabel>
+        <AccountLabel>Estimated Value</AccountLabel>
         <AccountHeadline>{recentValuationCost}</AccountHeadline>
-        <AccountList role="list">
-          <AccountListItem role="listitem">
+        <AccountList>
+          <AccountListItem>
             <InfoText>
               {`Last updated ${format(lastUpdate, "do MMM yyyy")}`}
             </InfoText>
           </AccountListItem>
-          <AccountListItem role="listitem">
+          <AccountListItem>
             <InfoText>
               {`Next update ${format(
                 add(lastUpdate, { days: account.updateAfterDays }),
@@ -89,18 +87,16 @@ const Detail = ({ account }) => {
         </AccountList>
       </AccountSection>
       <AccountSection>
-        <AccountLabel role="heading" aria-level="2">
-          Property details
-        </AccountLabel>
+        <AccountLabel>Property details</AccountLabel>
         <RowContainer>
-          <AccountList role="list">
-            <AccountListItem role="listitem">
+          <AccountList>
+            <AccountListItem>
               <InfoText>{account.name}</InfoText>
             </AccountListItem>
-            <AccountListItem role="listitem">
+            <AccountListItem>
               <InfoText>{account.bankName}</InfoText>
             </AccountListItem>
-            <AccountListItem role="listitem">
+            <AccountListItem>
               <InfoText>{account.postcode}</InfoText>
             </AccountListItem>
           </AccountList>
@@ -114,8 +110,8 @@ const Detail = ({ account }) => {
         >
           Valuation Change
         </AccountLabel>
-        <AccountList role="list">
-          <AccountListItem role="listitem">
+        <AccountList>
+          <AccountListItem>
             <InfoText>
               Purchased for
               <StyledOriginalPursachePrice>
@@ -124,11 +120,11 @@ const Detail = ({ account }) => {
               {`in ${purshacedDate}`}
             </InfoText>
           </AccountListItem>
-          <AccountListItem role="listitem">
+          <AccountListItem>
             <InfoText>Since Purchased</InfoText>
             <InfoValuationChange>{sincePurchaseInfo}</InfoValuationChange>
           </AccountListItem>
-          <AccountListItem role="listitem">
+          <AccountListItem>
             <InfoText>Annual appreciation</InfoText>
             <InfoValuationChange data-testid="annual-apreciation">
               {annualApreciatioPercentage}
@@ -139,18 +135,16 @@ const Detail = ({ account }) => {
 
       {mortgage && (
         <AccountSection>
-          <AccountLabel role="heading" aria-level="2">
-            Mortgage
-          </AccountLabel>
+          <AccountLabel>Mortgage</AccountLabel>
           <RowContainer
             // This is a dummy action
             onClick={() => alert("You have navigated to the mortgage page")}
           >
-            <AccountList role="list">
-              <AccountListItem role="listitem">
+            <AccountList>
+              <AccountListItem>
                 <InfoText>{currentBalanceInMortage}</InfoText>
               </AccountListItem>
-              <AccountListItem role="listitem">
+              <AccountListItem>
                 <InfoText>{account.associatedMortgages[0].name}</InfoText>
               </AccountListItem>
             </AccountList>
@@ -158,7 +152,7 @@ const Detail = ({ account }) => {
         </AccountSection>
       )}
       <Button
-        role="button"
+        aria-label="Edit Account"
         // This is a dummy action
         onClick={() => alert("You have navigated to the edit account page")}
       >
