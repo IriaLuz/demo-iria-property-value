@@ -29,7 +29,7 @@ export const InfoText = styled.p`
   gap: ${(props) => props.theme.space.xs};
   line-height: 1.6;
   font-size: ${(props) => props.theme.typography.m.fontSize};
-  color: ${(props) => props.theme.colors.neutral[1000]};
+  color: ${(props) => props.theme.colors.neutral[700]};
 `;
 
 export const InfoValuationChange = styled.p`

@@ -45,9 +45,8 @@ Here are some suggestions for future improvements to this prototype:
 - Added ARIA attributes to provide additional information to assistive technologies
 - implemented metadata tags for enhanced web accessibility and discoverability
 - Ensure that the document's title contains short, descriptive text summarizing the page's contents.(adding title to Head in \_document.js)
-- Added the tabIndex attributte to allow user navigation using the "Tab" key. This is particularly important for users with disabilities or impairments that affect their ability to use a mouse or other pointing device.
 - Added more contrast in color text and the button. This make the content easier to read for users with low vision or color blindness.
 - Added lang atributte helps to inform screen readers and other assistive technologies about the language of the content.
-- Added li to AccountListItem instead of a div. By using div elements instead of li elements to create lists, developers risk losing this important semantic information, which can make it more difficult for users with visual impairments or cognitive disabilities to understand the content. Additionally, some assistive technologies may not recognize div elements as list items, which can cause confusion or misinterpretation of the content.
+- Added li to AccountListItem instead of a div. By using div elements instead of li elements to create lists, developers risk losing this important semantic information, which can make it more difficult for users with visual impairments or cognitive disabilities to understand the content. Additionally, some assistive technologies may not recognize div elements as list items, which can cause confusion or misinterpretation of the content. Additionally, I added `p` elements to better structure the text content within the components. To ensure that the components are properly recognized by assistive technologies, I also added appropriate ARIA roles to the styled components and included `label` elements to associate form inputs with their labels.
 
 The app currently has an accessibility score of 100% on Lighthouse, thanks to those changes
